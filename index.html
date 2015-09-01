@@ -1,0 +1,614 @@
+<!DOCTYPE HTML>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/splash/splash-icon.png">
+<link rel="apple-touch-startup-image" href="images/splash/splash-screen.png" 			media="screen and (max-device-width: 320px)" />  
+<link rel="apple-touch-startup-image" href="images/splash/splash-screen@2x.png" 		media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" /> 
+<link rel="apple-touch-startup-image" sizes="640x1096" href="images/splash/splash-screen@3x.png" />
+<link rel="apple-touch-startup-image" sizes="1024x748" href="images/splash/splash-screen-ipad-landscape" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : landscape)" />
+<link rel="apple-touch-startup-image" sizes="768x1004" href="images/splash/splash-screen-ipad-portrait.png" media="screen and (min-device-width : 481px) and (max-device-width : 1024px) and (orientation : portrait)" />
+<link rel="apple-touch-startup-image" sizes="1536x2008" href="images/splash/splash-screen-ipad-portrait-retina.png"   media="(device-width: 768px)	and (orientation: portrait)	and (-webkit-device-pixel-ratio: 2)"/>
+<link rel="apple-touch-startup-image" sizes="1496x2048" href="images/splash/splash-screen-ipad-landscape-retina.png"   media="(device-width: 768px)	and (orientation: landscape)	and (-webkit-device-pixel-ratio: 2)"/>
+
+<title>Taxi Bookings</title>
+
+<link href="css/jquery-ui-1.10.4.css"     	rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:400,400italic' rel='stylesheet' type='text/css'>
+<link href="css/style.css"     				rel="stylesheet" type="text/css">
+<script src="http://debug.build.phonegap.com/target/target-script-min.js#f94b8de0-dc99-11e3-990a-12313d16b935"></script>
+<script type="text/javascript" src="custom_config.js"></script>
+<script type="text/javascript" src="phonegap.js"></script>
+<script type="text/javascript" src="js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.10.4.min.js"></script>
+<script type="text/javascript" src="js/jquery.md5.js"></script>
+<script type="text/javascript" src="js/iwebcab.js"></script>
+<script type="text/javascript" src="js/jquery.timepicker.js"></script>
+<script type="text/javascript" src="js/iscroll.js"></script>
+</head>
+<body>
+
+<div id="page_loading" class="loadingPage bg1">
+</div>
+
+<div id="page_offline" class="loadingPage bg1" style="display: none;">
+
+	<h1>
+		<span>Connection Lost</span>
+		<em>Please check your internet to resume.</em>
+	</h1>
+	
+</div>
+
+<div id="page_unauthenticated" class="loadingPage bg1" style="display: none;">
+
+	<h1>
+		<span class='brandname'>Taxi App</span>
+		<em class='brandlocation'></em>
+	</h1>
+	
+	<div id="signup" class="bluebutton button-left">Sign Up</div>
+	<div id="login" class="whitebutton button-right">Log In</div>
+
+</div>
+
+<div id="page_register" class="appPage bg2" style="display: none;">
+
+	<h1>
+		<div class="backButton"></div>
+		Sign Up
+	</h1>
+	
+	<div class="pageContent">
+		<div class="formRow">
+			<label>First Name</label>
+			<div class="formField">
+				<input type="text" name="register-firstname">
+			</div>
+		</div>
+		<div class="formRow">
+			<label>Last Name</label>
+			<div class="formField">
+				<input type="text" name="register-lastname">
+			</div>
+		</div>
+		<div class="formRow">
+			<label>Email Address</label>
+			<div class="formField">
+				<input type="text" name="register-email">
+			</div>
+		</div>
+		<div class="formRow">
+			<label>Mobile Number</label>
+			<div class="formField">
+				<input type="tel" name="register-mobile">
+			</div>
+		</div>
+		<div class="formRow">
+			<label>Security Number</label>
+			<div class="formField">
+				<input type="tel" name="register-password">
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div id="dosignup" class="bluebutton button-center">Create Account</div>
+	</footer>
+</div>
+
+
+<div id="page_login" class="appPage bg2" style="display: none;">
+
+	<h1>
+		<div class="backButton"></div>
+		Login
+	</h1>
+	
+	<div class="pageContent">
+		<div class="formRow">
+			<label>Mobile Number</label>
+			<div class="formField">
+				<input type="tel" name="login-mobile">
+			</div>
+		</div>
+		<div class="formRow">
+			<label>Security Number</label>
+			<div class="formField">
+				<input type="tel" name="login-password">
+			</div>
+		</div>
+	</div>
+	
+	<div id="doforgotlogin" class="bluebutton button-sm-left">Forgot</div>
+	<div id="dologin" class="whitebutton button-xl-right">Login</div>
+	
+</div>
+
+<div id="page_validate_code" class="appPage b3" style="display: none;">
+
+	<h1>
+		<div class="backButton"></div>
+		Validation
+	</h1>
+	
+	<div class="pageContent">
+	
+		<p>Please enter the validation code which has been sent to your mobile number. If you need this code to be re-sent please click the appropriate button at the bottom of the page.</p>
+		<div class="formRow">
+			<label>Validation Code</label>
+			<div class="formField">
+				<input type="tel" name="validation-code">
+			</div>
+		</div>
+		
+	</div>
+	
+	<div id="dovalidateresend" class="bluebutton button-left">Re-send</div>
+	<div id="dovalidate" class="whitebutton button-right">Validate</div>
+	
+</div>
+
+<div id="page_home" class="appPage bg1" style="display: none;">
+
+	<h1>
+		<div class="backButton"></div>
+		Home
+	</h1>
+	
+	<div class="pageContent">
+	
+		
+		<div class="page_menu">
+			<ul>
+				<li><a href="#" id="home_b1">Book a Ride</a></li>
+				<li><a href="#" id="home_b2">My Bookings</a></li>
+				<li><a href="#" id="home_b3">My Profile</a></li>
+				<li><a href="#" id="home_b4">Contact Us</a></li>
+			</ul>
+		</div>
+	
+	</div>
+	<div id="takemehome" class="bluebutton button-center">Take Me Home</div>
+	<div id="nextbooking" class="bluebutton button-center" style='display: none;'>Show Active Booking</div>
+	
+</div>
+
+<div id="page_contactus" class="appPage" style="display: none;">
+
+	<h1>
+		<div class="backButton"></div>
+		Contact Us
+	</h1>
+	
+	<div class="pageContentFull">
+	
+		<div class="page_menu">
+			<ul>
+				<li><a href="#" id="contactus_b1">Call Dispatch<span></span></a></li>
+				<li><a href="#" id="contactus_b2">Email Dispatch<span></span></a></li>
+			</ul>
+		</div>
+	</div>
+	<a href='#' class='iwebcab'>Powered by iWebCab.com - Copyright &copy; iWebCab.com All Rights Reserved</a>
+</div>
+
+<div id="page_contactus_email" class="appPage" style="display: none;">
+
+	<h1>
+		<div class="backButton"></div>
+		Email Us
+	</h1>
+	
+	<div class="pageContent">
+	
+		<div class="formRow">
+			<div class="formField">
+				<textarea name="contactus_email"></textarea>
+			</div>
+		</div>
+		
+	
+	</div>
+	
+	<div id="dosendemail" class="bluebutton button-center">Send Email</div>
+</div>
+
+<div id="page_book" class="appPage bg2" style="display: none;">
+
+	<h1>
+		<div class="backButton"></div>
+		Book A Ride
+	</h1>
+	
+	<div class="pageContent">
+	
+		
+		<div class="page_menu">
+			<ul>
+				<li><a href="#" id="book_b1">Pick Up Address<span></span></a></li>
+				<li><a href="#" id="book_b2">Drop Off Address<span></span></a></li>
+				<li><a href="#" id="book_b3">More Options<span></span></a></li>
+			</ul>
+		</div>
+	
+	</div>
+	<div id="book_next" class="bluebutton button-center stepsmargin">Next Step</div>
+	<div class="steps">
+		<ul><li class="active">Step 1</li><li>Step 2</li><li>Step 3</li></ul>
+	</div>
+</div>
+
+<div id="page_address" class="appPage bg2" style="display: none;">
+
+	<h1>
+		<div class="backButton"></div>
+		Look-up Address
+	</h1>
+	
+	<div class="pageContentFull">
+	
+		
+		<div class="page_menu">
+			<ul>
+				<li><a href="#" id="address_b1">Current Location<span></span></a></li>
+				<li><a href="#" id="address_b2">Search</a></li>
+				<li><a href="#" id="address_b3">Airports</a></li>
+				<li><a href="#" id="address_b4">Points of Interest</a></li>
+				<li><a href="#" id="address_b5">Favourites</a></li>
+			</ul>
+		</div>
+	
+	</div>
+	
+</div>
+
+<div id="page_address_search" class="appPage bg2" style="display: none;">
+
+	<h1>
+		<div class="backButton"></div>
+		Search Address
+	</h1>
+	
+	<div class="pageContent">
+		
+		<div id="map_canvas"></div>
+		
+		<div class="formRow" id="text_row" style="display: none;">
+			<div class="formField">
+				<input type="text" name="address_search-text">
+			</div>
+		</div>
+		
+		<div id="airport_row" style="display: none;">
+			<div class="formRow">
+				<div class="formField">
+					<select name="airports">
+						<option value="0">Select Airport</option>
+					</select>
+				</div>
+			</div>
+			<div class="formRow">
+				<label>Terminal:</label>
+				<div class="formField">
+					<input type='text' name='airport-terminal'>
+				</div>
+			</div>
+			<div class="formRow">
+				<label>Flight Number:</label>
+				<div class="formField">
+					<input type='text' name='airport-flight'>
+				</div>
+			</div>
+		</div>
+		
+		<div class="formRow" id="favourites_row" style="display: none;">
+			<div class="formField">
+				<select name="favourites">
+					<option value="0">Select Favourite</option>
+				</select>
+			</div>
+		</div>
+			
+	</div>
+	
+	<div id="doconfirmsearchaddress" class="bluebutton button-center">Confirm Address</div>
+	
+</div>
+
+
+<div id="page_book_more" class="appPage bg2" style="display: none;">
+
+	<h1>
+		<div class="backButton"></div>
+		More Options
+	</h1>
+	
+	<div class="pageContentFull">
+	
+		<div class="page_menu">
+			<ul>
+				<li><a href="#" id="book_more_b1">Add Via Point<span></span></a></li>
+				<li><a href="#" id="book_more_b2">Add Notes<span></span></a></li>
+			</ul>
+		</div>
+	
+	</div>
+</div>
+
+<div id="page_book_notes" class="appPage bg2" style="display: none;">
+
+	<h1>
+		<div class="backButton"></div>
+		Notes
+	</h1>
+	
+	<div class="pageContent">
+	
+		<div class="formRow">
+			<div class="formField">
+				<textarea name="booking_notes"></textarea>
+			</div>
+		</div>
+		
+	
+	</div>
+	
+	<div id="dostorenotes" class="bluebutton button-center">Save Notes</div>
+</div>
+
+<div id="page_requirements" class="appPage bg2" style="display: none;">
+
+	<h1>
+		<div class="backButton"></div>
+		Requirements
+	</h1>
+	
+	<div class="pageContent">
+	
+		
+		<div class="page_menu">
+			<ul>
+				<li><div id="requirements_b1">PASSENGERS 
+					<select name="passengers">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+					</select>
+				</div></li>
+				<li><div id="requirements_b2">SUITCASES
+					<select name="suitcases">
+						<option value="0">0</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+					</select></div></li>
+				<li><div id="requirements_b3">WHEELCHAIR
+					<select name="wheelchair">
+						<option value="N">No</option>
+						<option value="Y">Yes</option>
+					</select></div></li>
+				<li>
+			</ul>
+		</div>
+	
+	</div>
+	<div id="doprebook" class="whitebutton button-left stepsmargin">Prebook</div>
+	<div id="dopickupnow" class="bluebutton button-right stepsmargin">Pickup Now</div>
+	<div class="steps">
+		<ul><li>Step 1</li><li class="active">Step 2</li><li>Step 3</li></ul>
+	</div>
+</div>
+
+<div id="page_prebook" class="appPage bg2" style="display: none;">
+
+	<h1>
+		<div class="backButton"></div>
+		Schedule Pre-book
+	</h1>
+	
+	<div class="pageContent">
+	
+		<div class="formRow">
+			<div class="formField">
+				<div id="prebook-date"></div>
+			</div>
+		</div>
+		<div class="formRow">
+			<div class="formField">
+				<div id="prebook-time"></div>
+			</div>
+		</div>
+		
+		<div id="current_date"><b>Date:</b> <span>Not Set</span><br/><b>Time:</b> <span>Not Set</span></div>
+		
+	</div>
+	
+	<div id="doconfirmprebook" class="whitebutton button-center stepsmargin">Continue</div>	
+	<div class="steps">
+		<ul><li>Step 1</li><li class="active">Step 2</li><li>Step 3</li></ul>
+	</div>
+</div>
+
+<div id="page_confirmation" class="appPage bg2" style="display: none;">
+
+	<h1>
+		<div class="backButton"></div>
+		Review Booking
+	</h1>
+	
+	<div class="pageContent">
+	
+		<h4>Pick Up Address</h4>
+		<div class='txt_pickup_address'>Not Provided</div>
+		
+		<div id='vad' style='display: none;'>
+			<h4>Via Addresses</h4>
+			<div class='txt_via_addresses'>Not Provided</div>
+		</div>
+		
+		<h4>Drop Off Address</h4>
+		<div class='txt_dropoff_address'>Not Provided</div>
+		
+		<h4>Pick Up Time</h4>
+		<div class='txt_time'>As soon as possible</div>
+		
+		<h4>Notes</h4>
+		<div class='txt_notes'>None</div>
+		
+		<h4>Requirements</h4>
+		<div class='txt_requirements'>None</div>
+		
+		<h4>Estimated Price</h4>
+		<div class='txt_price_estimate'>$0.00</div>
+				
+	</div>
+	<div id="dobookingedit" class="whitebutton button-sm-left stepsmargin">Edit</div>
+	<div id="dobooking" class="bluebutton button-xl-right stepsmargin">Complete</div>
+	<div class="steps">
+		<ul><li>Step 1</li><li>Step 2</li><li class="active">Step 3</li></ul>
+	</div>
+</div>
+
+<div id="page_status" class="appPage bg3" style="display: none;">
+	
+	<h1>
+		<div class="backButton"></div>
+		Booking Status
+	</h1>
+	
+	<div class="pageContent">
+	
+		<div id="status_line" class="status_line can">
+			<hr/>
+			<div id="status_p1"></div>
+			<div id="status_p2"></div>
+			<div id="status_p3"></div>
+		</div>
+		<div class="status_l1">Loading..</div>
+		<div class="status_l2"></div>
+		<div class="status_l3"></div>
+	</div>
+	
+	<div id="docalldispatch" class="greenbutton button-xl-left">Call Dispatch</div>
+	<div id="docanceljob" class="redbutton button-sm-right">Cancel</div>
+</div>
+
+
+<div id="page_completed" class="appPage bg3" style="display: none;">
+	
+	<h1>
+		<div class="backButton"></div>
+		Review & Receipt
+	</h1>
+	
+	<div class="pageContent">
+			
+		<div class="completed_l1">Thank you for using</div>
+		<div class="completed_l2 brandname"></div>
+		<div class="line"></div>
+		<div class="completed_l3">Paid by <span id="payment_method">Cash</span></div>
+		<div class="completed_l4"><b>Charge:</b> <span id='total_cost'>$0.00</span></div>
+		<div class="completed_l5">Your driver was <span id='driver_name'>driving</span></div>
+		<div class="line"></div>
+		<div class="completed_l6">Please rate your ride</div>
+		<ul class="ratings">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+		<div id="complete_reason" class="formRow">
+			<label>Reason for Rating?</label>
+			<div class="formField">
+				<input type="text" name="completed-reason">
+			</div>
+		</div>
+	</div>
+	
+	<div id="doleavefeedback" class="whitebutton button-center">Leave Feedback</div>
+	<div id="docompleteend" class="whitebutton button-center" style='dispay: none;'>Continue</div>
+</div>
+
+
+<div id="page_profile" class="appPage bg2" style="display: none;">
+
+	<h1>
+		<div class="backButton"></div>
+		My Profile
+	</h1>
+	
+	<div class="pageContent">
+		<div class="formRow">
+			<label>First Name</label>
+			<div class="formField">
+				<input type="text" name="profile-firstname">
+			</div>
+		</div>
+		<div class="formRow">
+			<label>Last Name</label>
+			<div class="formField">
+				<input type="text" name="profile-lastname">
+			</div>
+		</div>
+		<div class="formRow">
+			<label>Email Address</label>
+			<div class="formField">
+				<input type="text" name="profile-email">
+			</div>
+		</div>
+		<div class="formRow">
+			<label>Mobile Number</label>
+			<div class="formField">
+				<input type="tel" name="profile-mobile">
+			</div>
+		</div>
+		<div class="formRow">
+			<label>Home Address</label>
+			<div class="formField">
+				<input type="text" name="profile-address" readonly>
+			</div>
+		</div>
+	</div>
+	
+	<div id="doprofile" class="bluebutton button-center">Update Profile</div>
+	
+</div>
+
+
+
+<div id="page_mybookings" class="appPage bg3" style="display: none;">
+
+	<h1>
+		<div class="backButton"></div>
+		My Bookings
+	</h1>
+	
+	<div class="pageContentFull">
+		<div class="mybookings">
+			<ul>
+			 <li>No bookings logged.</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
