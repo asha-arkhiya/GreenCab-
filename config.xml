@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <!-- CHANGE HERE -->
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="im.iwc.yellowcab" versionCode="100" version="1.0.0">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="im.iwc.greencab" versionCode="100" version="1.0.0">
    <!-- CHANGE HERE -->
    <name>Green Cab</name>
    <!-- CHANGE HERE -->
