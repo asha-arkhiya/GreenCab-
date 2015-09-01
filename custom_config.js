@@ -4,7 +4,7 @@
  * Created for iWebCab.com service usage only.
  */
 var api_key = "631ac0deacf309d3cf00662bac04fdc6";
-var brand_name = "Green Cab";
+var brand_name = "Green Cab Co";
 var brand_location = "Arkansas, US";
 var dispatch_number = "+14799664111";
 
