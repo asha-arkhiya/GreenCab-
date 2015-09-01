@@ -3,9 +3,9 @@
 <!-- CHANGE HERE -->
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="im.iwc.greencab" versionCode="100" version="1.0.0">
    <!-- CHANGE HERE -->
-   <name>Green Cab</name>
+   <name>Green Cab Co</name>
    <!-- CHANGE HERE -->
-   <description>Green Cab Application</description>
+   <description>Green Cab Co Application</description>
    <author href="http://ridegreencab.com" email="support@iwebcab.com">ridegreencab.com</author>
    <feature name="http://api.phonegap.com/1.0/geolocation" />
    <feature name="http://api.phonegap.com/1.0/media" />
