@@ -46,7 +46,7 @@
    <gap:plugin name="org.apache.cordova.network-information" />
    <gap:plugin name="org.apache.cordova.splashscreen" />
    <gap:plugin name="org.apache.cordova.vibration" />
-   <gap:plugin name="org.apache.cordova.inappbrowser" />
+   <gap:plugin name="org.apache.cordova.inappbrowser" source="npm" />
 <gap:config-file platform="ios" parent="CFBundleShortVersionString" overwrite="true">
 <string>101</string>
 </gap:config-file>
